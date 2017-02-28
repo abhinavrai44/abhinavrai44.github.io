@@ -1,0 +1,18 @@
+body.home-page {
+    background-image: url("background.jpg");
+    background-repeat: no-repeat;
+}
+
+form {
+	position:absolute;
+    top:40%;
+	left:30%;
+	width:40%;
+}
+
+btn-default{
+	left:80%;
+}
+
+body.contact-page {
+}
