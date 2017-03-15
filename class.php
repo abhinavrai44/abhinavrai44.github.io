@@ -37,10 +37,10 @@
 
 			// Twitter API Keys and Access Tokens
 			$settings = array(
-			    'oauth_access_token' => "366052192-Na4AbQVxrx7e6KT9PUaG7NBjEmeywMLLg5fbwrYH",
-			    'oauth_access_token_secret' => "VOWDS1qHMuaDKkeLgkeDL7RdUQihNOe6wWkjm0tah7S8Y",
-			    'consumer_key' => "Ouc4eOhpkBtjhJr100F61uxJt",
-			    'consumer_secret' => "ZdGls4Yw3fBMdB1JrQD9AoproFIzU6dDs0enlD9XZHoBIKZCm2"
+			    'oauth_access_token' => "",
+			    'oauth_access_token_secret' => "",
+			    'consumer_key' => "",
+			    'consumer_secret' => ""
 			);
 
 			// Query to be made using the API
