@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Depth Prediction</title>
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+  <link href="../lib/hover/hover.min.css" rel="stylesheet">
+
+  <!-- Blog Stylesheet File -->
+  <link href="../css/blog.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="../css/style.css" rel="stylesheet">
+
+  <!-- Responsive css -->
+  <link href="../css/responsive.css" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../images/favicon.png">
+
+</head>
+
+<body>
+
+  <!-- start section navbar -->
+  <nav id="main-nav-subpage" class="subpage-nav">
+    <div class="row">
+      <div class="container">
+
+        <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+        <ul class="nav-menu list-unstyled">
+          <li><a href="../index.html" class="smoothScroll">Home</a></li>
+          <li><a href="../index.html#about" class="smoothScroll">About</a></li>
+          <li><a href="../index.html#portfolio" class="smoothScroll">Projects</a></li>
+          <li><a href="../index.html#blog" class="smoothScroll">Published Work</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End section navbar -->
+  <!-- start section main content -->
+  <div class="main-content paddsection">
+    <div class="container">
+      <div class="row justify-content-center">
+        <img src="../images/depth_ssd.png" class="img-responsive" alt="reviews2">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row">
+            <div class="container-main single-main">
+              <div class="col-md-12">
+                <div class="block-main mb-30">
+                  <div class="content-main single-post padDiv">
+                    <div class="journal-txt">
+                      <h4><a href="#">Single-Shot MultiBox Detection and Depth</a></h4>
+                    </div>
+                    <div class="post-meta">
+                      <ul class="list-unstyled mb-0">
+                        <li class="author">by:<a href="#">Abhinav Rai and Manish Soni</a></li>
+                        <!-- <li class="date">date:<a href="#">March 31, 2017</a></li> -->
+                      </ul>
+                    </div>
+                    <p class="mb-30">Neural Networks have been trained to generate monocular disparity. If it is possible to generate disparity using monocular images, then it must be possible to combine distance with some of the existing Detection Network.</p>
+                    
+                    <blockquote>A network that can only identify obstacles in the current scene but also predict its depth, in real time can have enormous applications in ADAS systems. It frees developers from the constraints that are associated with computing distance of an object when using Monocular Camera and also reduces the system cost, as now only one camera is required.</blockquote>
+                    
+                    <p class="mb-30">This thought led to this expeiment wherein SSD network was modified to predict the distance of an object. Now, every output layer was modified to predict not only the shape offsets and the class confidence but also the depth. The loss function remained the same, except for the Scale-Invariant Loss being added for the distance. The model was able to fit its training dataset. Its architecture is as shown above. The image size was reduced for generating a network that could generate results in real-time. Some of the results obtained over the CityScape Dateset are shared below.</p>
+                    <img src="../images/ssd_depth_cityscape1.png" style="height: 100%; width: 100%; object-fit: contain" class="img-responsive" alt="reviews2">
+                    <p class="mb-30">However, some instances were observed wherein the network predicted highly deviant values. Now, this problem might be solved by using more data to train the network and making some other essential changes to the network, it cannot be guaranteed that such behaviour will never be observed. Also, it is difficult to cap the maximum error to a certain distance or to report the maximum error that will be observed for an object at a known distance. Hence, making it difficult to deploy this system in ADAS systems. </p>
+                  </div>
+                </div>
+              </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  </div> -->
+  <!-- start section main content -->
+
+  <!-- start section footer -->
+  <div id="footer" class="text-center">
+    <div class="container">
+      <div class="socials-media text-center">
+
+        <ul class="list-unstyled">
+          <li><a href="https://www.linkedin.com/in/abhinav-rai-040331118/" target="_blank"><i class="ion-social-linkedin"></i></a></li>
+          <li><a href="https://www.github.com/abhinavrai44" target="_blank"><i class="ion-social-github"></i></a></li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- End section footer -->
+
+  <!-- JavaScript Libraries -->
+  <script src="../lib/jquery/jquery.min.js"></script>
+  <script src="../lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../lib/typed/typed.js"></script>
+  <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../lib/magnific-popup/magnific-popup.min.js"></script>
+  <script src="../lib/isotope/isotope.pkgd.min.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="../js/main.js"></script>
+
+</body>
+
+</html>
