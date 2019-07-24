@@ -75,13 +75,13 @@
                         <!-- <li class="date">date:<a href="#">March 31, 2017</a></li> -->
                       </ul>
                     </div>
-                    <p class="mb-30">Object Detection and Semantic Segmentation are both important tasks for autonomous vehicles. Object Detection helps provide important information about the obstacles in the environment, while segmentation can be used for extraction free space.</p>
+                    <p class="mb-30">Object Detection and Semantic Segmentation are both important tasks for autonomous vehicles. Object Detection helps provide important information about the obstacles in the environment, while segmentation can be used for extraction of free space / drivable region.</p>
                     <blockquote><p>Segmentation when combined with object detection can help provide semantic segmentation over the image. Thus helping us provide better visual representation of obstacles, especially in partial overlapping scenarios. Better visual representation in turn helps with the association over frames, helping build a better motion model of the obstacles in the environment.</p>
 
                     Also, the segmentation output can be used to refine the bottom edge of the bounding box, thus helping us estimate the distance much more accurately using inverse projection. 
                     </blockquote>
                     <p class="mb-30">The architecture proposed is inspired from SSD for object detection and feature pyramid networks for segmentation. The backbone for the model is MobileNet. Feature Fusion over the layers is used for boosting detection accuracy over small objects.</p>
-                    <p class="mb-30">MobileNet with pretrained weights over ILSVRC ImageNet Dataset was used for training. The model used focal loss for segmentation and bounding box class prediction. Smooth L1 loss for bounding box regression. The Segmentation and Detection losses were combined in a 1:1 ratio for training. The model was trained using ADAM.</p>
+                    <p class="mb-30">MobileNet with pretrained weights over ILSVRC ImageNet Dataset was used for training. The model used focal loss for segmentation and bounding box class prediction. Smooth L1 loss is used for bounding box regression. The Segmentation and Detection losses were combined in a 1:1 ratio for training. The model was trained using ADAM.</p>
                   </div>
                 </div>
               </div>
