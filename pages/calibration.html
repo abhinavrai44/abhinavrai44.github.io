@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../img/fav-icon.png" type="image/x-icon" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Auto Calibration</title>
+
+        <!-- Icon css link -->
+        <link href="../vendors/material-icon/css/materialdesignicons.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../vendors/linears-icon/style.css" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Extra plugin css -->
+        <link href="../vendors/owl-carousel/assets/owl.carousel.css" rel="stylesheet">
+        <link href="../vendors/animate-css/animate.css" rel="stylesheet">
+        
+        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/responsive.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="../css/colors/default.css" title="default">
+        <link rel="alternate stylesheet" href="../css/colors/orange.css" title="orange">
+        <link rel="alternate stylesheet" href="../css/colors/pink.css" title="pink">
+        <link rel="alternate stylesheet" href="../css/colors/violet.css" title="violet">
+        <link rel="alternate stylesheet" href="../css/colors/blue.css" title="blue">
+        <link rel="alternate stylesheet" href="../css/colors/past.css" title="past">
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="dark_bg" data-spy="scroll" data-target="#bs-example-navbar-collapse-1" data-offset="80" data-scroll-animation="true">
+       
+        <div id="preloader">
+            <div id="preloader_spinner">
+                <div class="spinner"></div>
+            </div>
+        </div>
+       
+        <!--================ First header Area =================-->
+        <header class="header_area">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="../index.html"></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../index.html#about">ABOUT ME </a></li>
+                            <li><a href="../index.html#skill">SKILLS</a></li>
+                            <li><a href="../index.html#publication">PUBLICATIONS</a></li>
+                            <li><a href="../index.html#project">PROJECTS</a></li>
+                            <li><a href="../index.html#education">EDUCATION</a></li>
+                            <!-- <li><a href="../index.html#service">SERVICES</a></li> -->
+                            <!-- <li><a href="../index.html#news">NEWS</a></li> -->
+                            <li><a href="../index.html#contact">CONTACT</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+            </div>
+        </header>
+        <!--================End Footer Area =================-->
+        
+        <!--================Total container Area =================-->
+        <div class="container main_container">
+            <div class="content_inner_bg row m0">
+                <!-- <section class="about_person_area pad" id="about"> -->
+                    <!-- image / gif regarding the project -->
+                <!-- </section> -->
+                <section class="myskill_area pad" id="#">
+                    <div class="main_title">
+                        <h2>Automatic Extrinsic Camera Calibration</h2>
+                        <h3>By: Abhinav Rai and Amit Singh</h3>
+                    </div>
+                    <p class="mb-30">Monocular distance comutation using Projection Matrix is highly suseptible to errors. Error in estimating the mounting angle of the camera by even a single degree can lead to catastrophic results. As shown in the graph below the error in distance increases with increase in distance of the obstacle.</p>
+                    <img src="../img/projects/dist_vs_pixel.png" class="img-responsive" alt="reviews2"  style="height: 100%; width: 100%; object-fit: contain">
+                    In this post we discuss the methodology to compute the mounting error of the camera by computing the pitch and yaw of the camera with respect to the vehicle 
+                    <p class="mb-30">To accurately compute the mounting error of the camera we make use of convergence point (C.P.) of optical flow vectors. The vehicle is made to drive in a straight line and the C.P. is comuted over several frames. Once the exact position is determined it is then used to compute the mounting angle of the camera w.r.t the vehicle.</p>
+                    <p class="mb-30">The C.P. is a very important concept in a scenario wherein translation motion is dominant. It is a given point in the image where all the displacement vectors of stationary objects in the environment converge. However, it can be very difficult to compute its exact location, especially in noisy condition of a vehicle driving in a dynamic environment because of the inherent rotational motion of the vehicle, presence of dynamic objects and inaccurate optical flow which in turn leads to inaccurate displacement vectors. The first step is to remove dynamic obstacles in the environment for which we use a neural network trained to detect vehicles and persons in the environment as they are the prominent dynamic obstacles in the environment. Thereafter custom features are tracked over frames using optical flow. The inaccurate tracks are further filtered using RANSAC.</p>
+                    <p class="mb-30">For computing the point from these translational vectors we iterate over potential locations. For a particular C.P. we compute the optimal rotational mapping which when applied to the image I results in image I' minimizing the deviation of displacement vectors from C.P., represented by the equation :- </p>
+                    <p>$$\sum_i^n \frac{(x_{i} - x_{f}) \times (x_{i^{'}} - x_{f})}{\mid x_{i} - x_{f} \mid}$$</p>
+                    <p class="mb-30"> Steepest descent can be used to get optimal radial components. The pixel location minimizing the Error Function is selected.</p>
+
+                    <p class="mb-30"> Once we have the location of the point the next step would be to compute the mounting angle of the camera. Making use of the fact that the C.P. is located at infinity, the value of pitch and yaw angles can be reduced to</p>
+                    
+                    <p>$$yaw = \tan^{ - 1}{(C.P._x-c_x) \over focallength}.$$</p>
+
+                    <p>$$pitch = \tan^{ - 1}{\cos(yaw)*(C.P._y-c_y) \over focallength}.$$</p>
+
+                    <p class="mb-30"> Now that we have the pitch and yaw angles, the rotation matrix can be computed. Then making use of inverse projection matrix, the distance can be accurately computed.</p>
+                </section>
+                <!--================Map Area =================-->
+                <div class="mapBox row m0"></div>
+                <!--================End Map Area =================-->
+            </div>
+        </div>
+        <!--================End Total container Area =================-->
+        
+        <!--================footer Area =================-->
+        <footer class="footer_area">
+            <div class="footer_inner">
+                <div class="container">
+                    <!-- <img src="img/footer-logo.png" alt=""> -->
+                    <ul class="social_icon">
+                        <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
+                        <li><a href="https://twitter.com/satya_8842"><i class="fab fa-twitter"></i></a></li>
+                        <!-- <li><a href="#"><i class="fa fa-instagram"></i></a></li> -->
+                        <!-- <li><a href="#"><i class="fa fa-google-plus"></i></a></li> -->
+                        <li><a href="https://www.linkedin.com/in/satyarth934/"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="https://in.pinterest.com/sap89750/"><i class="fab fa-pinterest"></i></a></li>
+                        <!-- <li><a href="#"><i class="fa fa-skype"></i></a></li> -->
+                        <!-- <li><a href="#"><i class="fa fa-flickr"></i></a></li> -->
+                        <!-- <li><a href="#"><i class="fa fa-dribbble"></i></a></li> -->
+                        <!-- <li><a href="#"><i class="fa fa-rss"></i></a></li> -->
+                        <li><a href="https://www.quora.com/profile/Satyarth-Praveen"><i class="fab fa-quora"></i></a></li>
+                        <li><a href="https://www.reddit.com/user/sap89750"><i class="fab fa-reddit-alien"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer_copyright">
+                <div class="container">
+                    <div class="pull-left">
+                        <h5>
+                            <p>
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.
+                            </p>
+                        </h5>
+                    </div>
+                    <div class="pull-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../index.html#about">ABOUT ME </a></li>
+                            <li><a href="../index.html#skill">SKILLS</a></li>
+                            <li><a href="../index.html#publication">PUBLICATIONS</a></li>
+                            <li><a href="../index.html#project">PROJECTS</a></li>
+                            <li><a href="../index.html#education">EDUCATION</a></li>
+                            <!-- <li><a href="../index.html#service">SERVICES</a></li> -->
+                            <!-- <li><a href="../index.html#news">NEWS</a></li> -->
+                            <li><a href="../index.html#contact">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--================End footer Area =================-->
+        
+        <!-- <div class="envalab-style-switch" id="switch-style">
+            <div class="switch-button" id="toggle-switcher"><i class="fa fa-gears"></i></div>
+            <div class="switched-options">
+                <div class="config-title">Color Panel </div>
+                <ul class="styles">
+                    <li>
+                        <a href=# onclick='return setActiveStyleSheet("default"),!1' title="default"></a>
+                    </li>
+                    <li>
+                        <a href=# onclick='return setActiveStyleSheet("orange"),!1' title="orange"></a>
+                    </li>
+                    <li>
+                        <a href=# onclick='return setActiveStyleSheet("pink"),!1' title="pink"></a>
+                    </li>
+                    <li>
+                        <a href=# onclick='return setActiveStyleSheet("violet"),!1' title="violet"></a>
+                    </li>
+                    <li>
+                        <a href=# onclick='return setActiveStyleSheet("blue"),!1' title="blue"></a>
+                    </li>
+                    <li>
+                        <a href=# onclick='return setActiveStyleSheet("past"),!1' title="past"></a>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+        
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="../js/jquery-2.1.4.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../js/bootstrap.min.js"></script>
+        <!-- Extra plugin js -->
+        <script src="../vendors/counter-up/waypoints.min.js"></script>
+        <script src="../vendors/counter-up/jquery.counterup.min.js"></script>
+        <script src="../vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="../vendors/isotope/isotope.pkgd.min.js"></script>
+        <script src="../vendors/owl-carousel/owl.carousel.min.js"></script>
+
+        <script src="../vendors/style-switcher/styleswitcher.js"></script>
+        <script src="../vendors/style-switcher/switcher-active.js"></script>
+        <script src="../vendors/animate-css/wow.min.js"></script>
+       
+        <!--gmaps Js-->
+        <script src="../https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+        <script src="../js/gmaps.min.js"></script>
+        
+        <!-- contact js -->
+        <script src="../js/jquery.form.js"></script>
+        <script src="../js/jquery.validate.min.js"></script>
+        <script src="../js/contact.js"></script>
+        
+        <script src="../js/theme.js"></script>
+    </body>
+</html>
